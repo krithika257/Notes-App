@@ -4,7 +4,14 @@ const createBtn = document.querySelector(".createBtn");
 let notes = document.querySelectorAll(".input-box");
 
 function showNotes(){
-    notesContainer.innerHTML=localStorage.getItem("notes");
+    notesContainer.innerHTML=localStorage.getItem("notes") || '';
+    notes= document.querySelectorAll(".input-box");
+   
+    notes.forEach(nt =>{
+        nt.onkeyup = function(){
+            updateStorage();
+        };
+    });
 }
 showNotes();
 function updateStorage(){
@@ -63,4 +70,5 @@ notesContainer.addEventListener("keydown", function (e) {
     }
 });
 
+updateStorage();
 
